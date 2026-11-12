@@ -6,3 +6,7 @@ Nenhum dado é perdido por causa da reverse_copy_atores.
 
 ## 2. Com ManyToMany, o que acontece com um livro quando o seu único autor é apagado? Como garantir que todo livro tenha pelo menos um autor?
 O livro permanece, mas o campo atores fica vazio. Pode ser feito um signal pre-commit que valide isso.
+
+## O que acontece quando a proteção é removida do template?
+
+O Django impede o envio do formulário, retornando um 403 (Forbidden), "CSRF verification failed. Request aborted."

@@ -3,7 +3,7 @@ from .models import Livro, Categoria, Autor
 
 
 class LivroAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'ano_publicacao', 'disponivel')
+    list_display = ('titulo', 'get_autores', 'ano_publicacao', 'disponivel')
     list_filter = ('disponivel',)
     search_fields = ('titulo', 'autores__nome')
     filter_horizontal = ('categorias',)
