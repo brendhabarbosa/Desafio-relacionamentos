@@ -11,8 +11,9 @@
         <p>Nacionalidade: {{ autor.nacionalidade }}</p>
         <p>Livros:</p>
         <ul>
-            {% for livro in autor.books.all %}
+            {% for livro in livros %}
                 <li>{{ livro.titulo }} - ({{ livro.ano_publicacao }})</li>
+                <a href="{%url 'biblioteca:livro_form' pk=livro.pk%}">Editar</a>
             {% empty %}
                 <li>Este autor não possui livros cadastrados.</li>
             {% endfor %}

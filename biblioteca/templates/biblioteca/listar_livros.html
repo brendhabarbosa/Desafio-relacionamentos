@@ -16,9 +16,11 @@
                </a>
            {% endfor %}
            <p> <strong>Ano de publicação:</strong>{{ livro.ano_publicacao }}</p>
+           <a href="{% url 'biblioteca:livro_form' pk=livro.pk %}">Editar</a>
            <hr width="25%" align="left">
         {% endfor %}
         <a href="{% url 'biblioteca:author_cadastro' %}">Novo autor</a>
+        <a href="{% url 'biblioteca:livro_form' %}">Novo livro</a>
     </main>
 </body>
 </html>

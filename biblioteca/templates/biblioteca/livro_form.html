@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titulo_pagina}}</title>
+</head>
+<body>
+    <h1>{{titulo_pagina}}</h1>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label for="{{ form.titulo.id_for_label }}">Título:</label>
+            {{ form.titulo }}
+            {{ form.titulo.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.autores.id_for_label }}">Autor:</label>
+            {{ form.autores }}
+            {{ form.autores.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.ano_publicacao.id_for_label }}">Ano de Publicação:</label>
+            {{ form.ano_publicacao }}
+            {{ form.ano_publicacao.errors }}
+        </div>
+
+        <div>
+            <label for="{{ form.disponivel.id_for_label }}">Disponível:</label>
+            {{ form.disponivel }}
+            {{ form.disponivel.errors }}
+        </div>
+
+        <div>
+            <p>Categorias:</p>
+            {% for checkbox in form.categorias %}
+                <label>
+                    {{ checkbox.tag }}
+                    {{ checkbox.choice_label }}
+                </label>
+                <br>
+            {% endfor %}
+            {{ form.categorias.errors }}
+        </div>
+        {% if form.non_field_errors %}
+            {{ form.non_field_errors }}
+        {% endif %}
+        <button type="submit">{{texto_botao}}</button>
+    </form>
+</body>
+</html>
