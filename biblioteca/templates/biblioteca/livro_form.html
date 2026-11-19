@@ -45,6 +45,18 @@
             {% endfor %}
             {{ form.categorias.errors }}
         </div>
+
+        <div>
+            <label for="{{ form.paginas.id_for_label }}">Páginas:</label>
+            {{form.paginas}}
+            {{form.paginas.errors}}
+        </div>
+
+        <div>
+            <label for="{{ form.isbn.id_for_label }}">ISBN:</label>
+            {{form.isbn}}
+            {{form.isbn.errors}}
+        </div>
         {% if form.non_field_errors %}
             {{ form.non_field_errors }}
         {% endif %}

@@ -10,3 +10,17 @@ O livro permanece, mas o campo atores fica vazio. Pode ser feito um signal pre-c
 ## O que acontece quando a proteção é removida do template?
 
 O Django impede o envio do formulário, retornando um 403 (Forbidden), "CSRF verification failed. Request aborted."
+
+## Perguntas 1.2
+
+a - Isso aconteceu porque o formulário é criado a partir do Model e o Django Admin também utiiza esse formuário.
+
+b - O validator é uma função reutilizável que somente valida o campo, enquanto o clean_campo permite, além de validar, modificar/limpar o valor do campo.
+
+c - O título não pode ser igual ao nome do autor: Como faz comparação entre dois campos, o ideal é usar clean(), que contempla validações envolvendo mais de uma campo.
+
+c - O título deve ser salvo sem espaços no início e no fim - Como é preciso modificar um campo específicio, é melhor o clean_campo, que serve justamente para isso.
+
+c - O número de páginas deve ser no máximo 5000 - Deve ser usado validators=[...]. A função pronta MaxValueValidator() com 5000 como argumento, estabelece 5000 como valor máximo.
+
+c - Um livro "indisponível" precisa ter o ISBN preenchido - O clean() é a melhor estratégia porque a validação envolve dois campos: isbn e disponível.

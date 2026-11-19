@@ -17,7 +17,7 @@ class LivroForm(forms.ModelForm):
     )
     class Meta:
         model = Livro
-        fields = ['titulo', 'autores', 'ano_publicacao', 'disponivel', 'categorias']
+        fields = '__all__'
         widgets = {
             'categorias': forms.CheckboxSelectMultiple(),
         }
@@ -28,7 +28,7 @@ class LivroForm(forms.ModelForm):
             'disponivel': 'Disponível',
             'categorias': 'Categoria(s)',
         }
-        
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
