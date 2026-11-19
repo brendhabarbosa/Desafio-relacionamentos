@@ -1,19 +1,21 @@
 from django import forms
 from .models import Autor, Livro
 from datetime import date
-class AutorForm(forms.Form):
+class AutorModelForm(forms.ModelForm):
     nome = forms.CharField(label="Nome", max_length=200)
     nacionalidade = forms.CharField(label="Nacionalidade", max_length=200, required=False)
+    class Meta:
+        model = Autor
+        fields = '__all__'
     def save(self):
         autor = Autor(**self.cleaned_data)
         autor.save()
         return autor
 
-class LivroForm(forms.ModelForm):
-    autores = forms.ModelChoiceField(
+class LivroModelForm(forms.ModelForm):
+    autores = forms.ModelMultipleChoiceField(
         queryset=Autor.objects.all(),
         label='Autor',
-        empty_label='Selecione um autor'
     )
     class Meta:
         model = Livro
@@ -32,7 +34,7 @@ class LivroForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance.pk:
-            self.initial['autores'] = self.instance.autores.first()
+            self.initial['autores'] = self.instance.autores.all()
 
     def clean_titulo(self):
         titulo = self.cleaned_data.get('titulo')

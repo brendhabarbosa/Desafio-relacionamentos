@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{titulo_pagina}}</title>
+    <title>{% if object %}Editar livro{% else %}Cadastrar livro{% endif %}</title>
 </head>
 <body>
-    <h1>{{titulo_pagina}}</h1>
+    <h1>{% if object %}Editar livro{% else %}Cadastrar livro{% endif %}</h1>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
@@ -65,7 +65,7 @@
         {% if form.non_field_errors %}
             {{ form.non_field_errors }}
         {% endif %}
-        <button type="submit">{{texto_botao}}</button>
+        <button type="submit">Salvar</button>
     </form>
 </body>
 </html>

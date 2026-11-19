@@ -34,3 +34,13 @@ b - STATIC é para arquivos que fazem parte do projeto; MEDIA é para arquivos e
 c - Isso acontece porque o arquivo é excluído do banco, mas não da pasta que o guarda. A longo prazo, o acúmulo de arquivos não mais utilizados pode deixar o armazenamento cheio.
 
 d - Alguém pode renomear a parte de extensão do arquivo para burlá-lo. Assim, o conteúdo do arquivo não vai ser válido. Por isso, é importante validar não só a extensão, mas também o conteúdo do arquivo. O servidor também deve limitar o tamanho, restringir formatos, gerar nomes seguros e armazenar os arquivos de maneira protegida.
+
+## Perguntas 3.1
+
+a - A própria CreateView faz esse controle automaticamente que antes era feito manualmente no modelo FBV.
+
+b - A própria CreateView também faz isso internamente, recebendo automaticamente os arquivos enviados.
+
+c - A DeleteView utiliza GET e POST. GET pega a página e POST realmente realiza a exclusão. Então, se a exclusão acontecesse no GET, bastaria acessar um link para apagar um registro sem confirmação.
+
+d - As CBVs permitem reutilizar comportamentos prontos do Django, diminuindo linhas de código. A desvantagem é que podem ser mais difíceis de personalizar. Então, quando a lógica for pequena e mais personalizada, FBV pode ser a melhor opção.
