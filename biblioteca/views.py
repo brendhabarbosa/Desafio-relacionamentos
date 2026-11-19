@@ -39,7 +39,7 @@ def author_cadastro(request):
 def create_edit_livro(request, pk =None):
     livro = get_object_or_404(Livro, pk=pk) if pk else None
     if request.method == 'POST':
-        form = LivroForm(request.POST, instance=livro)
+        form = LivroForm(request.POST, request.FILES, instance=livro)
         if form.is_valid():
             with transaction.atomic():
                 livro = form.save(commit=False)

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>{{titulo_pagina}}</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
         <div>
@@ -56,6 +56,11 @@
             <label for="{{ form.isbn.id_for_label }}">ISBN:</label>
             {{form.isbn}}
             {{form.isbn.errors}}
+        </div>
+        <div>
+        <label for="{{ form.capa.id_for_label }}">Capa do livro:</label>
+            {{ form.capa }}
+            {{ form.capa.errors }}
         </div>
         {% if form.non_field_errors %}
             {{ form.non_field_errors }}

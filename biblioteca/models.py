@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MinValueValidator, MaxValueValidator, RegexValidator
 from datetime import date
+from django.core.validators import FileExtensionValidator
+from .validators import validar_tamanho_arquivo
 class Autor(models.Model):
     nome = models.CharField(max_length=200)
     nacionalidade = models.CharField(max_length=200, null=True, blank=True)
@@ -27,6 +29,8 @@ class Livro(models.Model):
     categorias = models.ManyToManyField(Categoria, blank=True)
     paginas = models.IntegerField(blank=True, null=True, validators=[MinValueValidator(1), MaxValueValidator(5000)])
     isbn = models.CharField(max_length=13, validators=[RegexValidator(r'^\d{13}$')])
+    capa = models.ImageField("Imagem da capa", upload_to="livros/", blank=True, validators=[ validar_tamanho_arquivo,
+    FileExtensionValidator(["jpg", "jpeg", "png"])])
     def __str__(self):
         return self.titulo
 
